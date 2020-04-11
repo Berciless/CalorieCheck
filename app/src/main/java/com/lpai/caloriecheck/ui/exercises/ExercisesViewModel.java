@@ -1,17 +1,14 @@
-package com.lpai.caloriecheck.ui.dashboard;
+package com.lpai.caloriecheck.ui.exercises;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class DashboardViewModel extends ViewModel {
+public class ExercisesViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-
-
-    public DashboardViewModel() {
-
+    public ExercisesViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is dashboard fragment");
     }

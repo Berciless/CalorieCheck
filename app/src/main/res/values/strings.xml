@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Calorie Check</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_dashboard">AICI INTRODUDIC MANCARE</string>
+    <string name="title_exercises">EXERCITII</string>
     <string name="title_notifications">Notifications</string>
 </resources>
