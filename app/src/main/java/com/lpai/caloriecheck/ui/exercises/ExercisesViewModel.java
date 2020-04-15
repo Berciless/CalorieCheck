@@ -10,7 +10,7 @@ public class ExercisesViewModel extends ViewModel {
 
     public ExercisesViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+        mText.setValue("Fragment de exercitii");
     }
 
     public LiveData<String> getText() {
