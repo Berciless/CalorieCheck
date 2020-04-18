@@ -1,17 +1,11 @@
 <resources>
     <string name="app_name">Calorie Check</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">AICI INTRODUCI MANCARE</string>
-    <string name="title_exercises">EXERCITII</string>
+    <string name="title_dashboard">Food intake</string>
+    <string name="title_exercises">Exercises</string>
     <string name="title_notifications">Notifications</string>
-
-    <string-array name="Company">
-        <item>Evon</item>
-        <item>HCL</item>
-        <item>HP</item>
-        <item>Ericsson</item>
-        <item>TCS</item>
-        <item>Dell</item>
-        <item>Microsoft</item>
-    </string-array>
+    <string name="proteins">Proteins:</string>
+    <string name="calories">Calories:</string>
+    <string name="carbs">Carbs:</string>
+    <string name="fat">Fats:</string>
 </resources>

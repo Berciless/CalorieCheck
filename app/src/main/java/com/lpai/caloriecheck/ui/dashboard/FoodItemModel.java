@@ -1,35 +1,29 @@
 package com.lpai.caloriecheck.ui.dashboard;
 
+
 public class FoodItemModel {
 
 
-    String name;
-    String type;
-    String version_number;
-    String feature;
+    public String name;
+    public double proteins;
+    public double carbs;
+    public double fat;
+    public double calories;
 
-    public FoodItemModel(String name, String type, String version_number, String feature ) {
-        this.name=name;
-        this.type=type;
-        this.version_number=version_number;
-        this.feature=feature;
 
+    public FoodItemModel(MacroRatio macroRatio, double quantity) {
+        this.name = macroRatio.name;
+        this.proteins = macroRatio.proteinRatio*quantity;
+        this.carbs    = macroRatio.carbsRatio*quantity;
+        this.fat      = macroRatio.fatRatio*quantity;
+        this.calories = macroRatio.caloriesRatio*quantity;
     }
 
-    public String getName() {
-        return name;
+    public FoodItemModel(String name, double proteins, double carbs, double fat, double calories) {
+        this.name = name;
+        this.proteins = proteins;
+        this.carbs = carbs;
+        this.fat = fat;
+        this.calories = calories;
     }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getVersion_number() {
-        return version_number;
-    }
-
-    public String getFeature() {
-        return feature;
-    }
-
 }
