@@ -1,6 +1,7 @@
 package com.lpai.caloriecheck.ui.dashboard;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -17,4 +18,5 @@ public interface FoodDao {
 
     @Query("SELECT * FROM daily_food")
     LiveData<List<Food>> getTodaySFood();
+
 }

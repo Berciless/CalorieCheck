@@ -1,22 +1,27 @@
 package com.lpai.caloriecheck.ui.dashboard;
 
+import android.app.Application;
+
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class DashboardViewModel extends ViewModel {
+import java.util.List;
 
-    private MutableLiveData<String> mText;
+public class DashboardViewModel extends AndroidViewModel {
 
-
-
-    public DashboardViewModel() {
-
-        mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+    private FoodRepository repository;
+    private LiveData<List<Food>> todaySFood;
+    public DashboardViewModel(Application application){
+        super(application);
+        repository=new FoodRepository(application);
+        todaySFood = new MutableLiveData<>();
+        todaySFood =  repository.getTodaySFood();
     }
-
-    public LiveData<String> getText() {
-        return mText;
+    LiveData<List<Food>> getTodaySFood(){
+        return todaySFood;
     }
+    public void insert(Food food){repository.insert(food);}
+
 }

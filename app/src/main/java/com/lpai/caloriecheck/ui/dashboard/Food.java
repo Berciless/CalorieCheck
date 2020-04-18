@@ -14,8 +14,7 @@ public class Food {
     public double fat;
     public double calories;
 
-    public Food(long foodId, String name, double proteins, double carbs, double fat, double calories) {
-        this.foodId = foodId;
+    public Food( String name, double proteins, double carbs, double fat, double calories) {
         this.name = name;
         this.proteins = proteins;
         this.carbs = carbs;
