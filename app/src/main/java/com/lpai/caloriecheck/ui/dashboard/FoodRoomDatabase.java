@@ -42,7 +42,7 @@ public abstract class FoodRoomDatabase extends RoomDatabase {
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 
         private final FoodDao dao;
-        String[] foods = {"dolphin", "crocodile", "cobra"};
+        String[] foods = {"dolphin", "crocodile", "cobra", };
 
         PopulateDbAsync(FoodRoomDatabase db) {
             dao = db.foodDao();

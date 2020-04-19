@@ -11,11 +11,11 @@ import java.util.List;
 
 public class DashboardViewModel extends AndroidViewModel {
 
-    private FoodRepository repository;
+    private  FoodRepository repository;
     private LiveData<List<Food>> todaySFood;
     public DashboardViewModel(Application application){
         super(application);
-        repository=new FoodRepository(application);
+        repository = new FoodRepository(application);
         todaySFood = new MutableLiveData<>();
         todaySFood =  repository.getTodaySFood();
     }

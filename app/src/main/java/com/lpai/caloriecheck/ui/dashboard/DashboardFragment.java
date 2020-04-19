@@ -1,29 +1,35 @@
 package com.lpai.caloriecheck.ui.dashboard;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.ListFragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.lpai.caloriecheck.MainActivity;
 import com.lpai.caloriecheck.R;
 
+import java.sql.SQLOutput;
 
 
 public class DashboardFragment extends Fragment implements AdapterView.OnItemClickListener{
 
 
+    DashboardViewModel dashboardViewModel;
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+
+
+        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
@@ -33,7 +39,16 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemCli
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
-        dashboardViewModel.getTodaySFood().observe(this, adapter::setFoods);
+        dashboardViewModel.getTodaySFood().observe(getViewLifecycleOwner(), adapter::setFoods);
+
+        Button button = root.findViewById(R.id.button);
+        button.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(),AddFoodActivity.class);
+            getActivity().startActivityForResult(intent,1);
+        });
+
+
+
         return root;
     }
 
@@ -48,5 +63,19 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemCli
         Toast.makeText(getActivity(), "TOAST", Toast.LENGTH_SHORT).show();
     }
 
+    public void  onAcrivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+
+        if(requestCode == 1 && resultCode == -1){
+            Food food = new Food(data.getStringExtra(AddFoodActivity.EXTRA_REPLY));
+            System.out.println("dasdasdasdas");
+            dashboardViewModel.insert(food);
+        } else {
+            Toast.makeText(
+                    getActivity().getApplicationContext(),
+                    R.string.fat,
+                    Toast.LENGTH_LONG).show();
+        }
+    }
 
 }
