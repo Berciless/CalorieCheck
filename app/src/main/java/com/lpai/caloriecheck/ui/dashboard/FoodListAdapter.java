@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,11 +14,12 @@ import com.lpai.caloriecheck.R;
 import java.util.List;
 
 public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodViewHolder> {
-
     private final LayoutInflater inflater;
     private List<Food> foods; // Cached copy of foods
 
-    FoodListAdapter(Context context) { inflater = LayoutInflater.from(context); }
+    FoodListAdapter(Context context) {
+        inflater = LayoutInflater.from(context);
+    }
 
     @Override
     public FoodViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -57,12 +59,13 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
         else return 0;
     }
 
-    class FoodViewHolder extends RecyclerView.ViewHolder {
+    class FoodViewHolder extends RecyclerView.ViewHolder  {
         TextView txtName;
         TextView txtCalories;
         TextView txtProteins;
         TextView txtCarbs;
         TextView txtFat;
+
 
         private FoodViewHolder(View itemView) {
             super(itemView);
@@ -72,5 +75,6 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
             txtCarbs= itemView.findViewById(R.id.carbs);
             txtFat = itemView.findViewById(R.id.fat);
         }
+
     }
 }

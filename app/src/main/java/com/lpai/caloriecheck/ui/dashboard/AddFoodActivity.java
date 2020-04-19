@@ -28,7 +28,7 @@ public class AddFoodActivity extends AppCompatActivity {
             if(TextUtils.isEmpty(newFood.getText())){
                 setResult(RESULT_CANCELED,replyIntent);
             } else{
-                System.out.println("Succes");
+
                 String name = newFood.getText().toString();
                 replyIntent.putExtra(EXTRA_REPLY,name);
                 setResult(RESULT_OK, replyIntent);

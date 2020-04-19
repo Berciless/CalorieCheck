@@ -53,12 +53,12 @@ public abstract class FoodRoomDatabase extends RoomDatabase {
             // Start the app with a clean database every time.
             // Not needed if you only populate the database
             // when it is first created
-            dao.deleteAll();
-
-            for (int i = 0; i < foods.length ; i++) {
-                Food food = new Food("Apple Pie",20,100,15,600);
-                dao.insert(food);
-            }
+//            dao.deleteAll();
+//
+//            for (int i = 0; i < foods.length ; i++) {
+//                Food food = new Food("Apple Pie",20,100,15,600);
+//                dao.insert(food);
+//            }
             return null;
         }
     }

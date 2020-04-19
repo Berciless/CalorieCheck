@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,7 +22,7 @@ import com.lpai.caloriecheck.R;
 import java.sql.SQLOutput;
 
 
-public class DashboardFragment extends Fragment implements AdapterView.OnItemClickListener{
+public class DashboardFragment extends Fragment {
 
 
     DashboardViewModel dashboardViewModel;
@@ -44,7 +45,7 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemCli
         Button button = root.findViewById(R.id.button);
         button.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(),AddFoodActivity.class);
-            getActivity().startActivityForResult(intent,1);
+            startActivityForResult(intent,1);
         });
 
 
@@ -57,18 +58,12 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemCli
         super.onActivityCreated(savedInstanceState);
 
     }
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        Toast.makeText(getActivity(), "TOAST", Toast.LENGTH_SHORT).show();
-    }
 
-    public void  onAcrivityResult(int requestCode, int resultCode, Intent data){
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode,resultCode,data);
-
         if(requestCode == 1 && resultCode == -1){
             Food food = new Food(data.getStringExtra(AddFoodActivity.EXTRA_REPLY));
-            System.out.println("dasdasdasdas");
             dashboardViewModel.insert(food);
         } else {
             Toast.makeText(
