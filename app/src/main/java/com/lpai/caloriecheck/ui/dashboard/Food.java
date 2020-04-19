@@ -32,11 +32,4 @@ public class Food {
         this.calories = 570;
     }
 
-//    public Food(Food food) {
-//        this.name = food.name;
-//        this.proteins = food.proteins;
-//        this.carbs = food.carbs;
-//        this.fat = food.fat;
-//        this.calories = food.calories;
-//    }
 }

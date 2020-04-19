@@ -12,16 +12,20 @@ import java.util.List;
 public class DashboardViewModel extends AndroidViewModel {
 
     private  FoodRepository repository;
+
     private LiveData<List<Food>> todaySFood;
     public DashboardViewModel(Application application){
         super(application);
         repository = new FoodRepository(application);
         todaySFood = new MutableLiveData<>();
-        todaySFood =  repository.getTodaySFood();
+        todaySFood = repository.getTodaySFood();
+
     }
-    LiveData<List<Food>> getTodaySFood(){
-        return todaySFood;
-    }
+
+    public LiveData<List<Food>> getTodaySFood(){ return todaySFood; }
+
     public void insert(Food food){repository.insert(food);}
+
+    public void deleteAll(){repository.deleteAll();}
 
 }

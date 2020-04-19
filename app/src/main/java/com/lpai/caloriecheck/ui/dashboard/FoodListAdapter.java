@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,10 +17,12 @@ import java.util.List;
 public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodViewHolder> {
     private final LayoutInflater inflater;
     private List<Food> foods; // Cached copy of foods
-
+    Context context;
     FoodListAdapter(Context context) {
         inflater = LayoutInflater.from(context);
+        this.context=context;
     }
+    public View.OnClickListener clickListener;
 
     @Override
     public FoodViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -36,6 +39,8 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
             holder.txtProteins.setText(String.valueOf(foodItem.proteins));
             holder.txtCarbs.setText(String.valueOf(foodItem.carbs));
             holder.txtFat.setText(String.valueOf(foodItem.fat));
+//AICI O SA SETEZI NAVIGAREA CATRE UPDATE SAU DELET PT UN ANUME FOOD DIN DYLY_FOOD
+            holder.itemView.setOnClickListener(v -> System.out.println(foodItem.foodId));
         } else {
             holder.txtName.setText("ERROR");
             holder.txtCalories.setText(String.valueOf("ERROR"));
@@ -74,7 +79,15 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
             txtProteins= itemView.findViewById(R.id.proteins);
             txtCarbs= itemView.findViewById(R.id.carbs);
             txtFat = itemView.findViewById(R.id.fat);
+//            itemView.setOnClickListener(this);
         }
 
+//        @Override
+//        public void onClick(View v) {
+//            Toast.makeText(
+//                    context,
+//                    "ai apasat"+getLayoutPosition(),
+//                    Toast.LENGTH_SHORT).show();
+//        }
     }
 }

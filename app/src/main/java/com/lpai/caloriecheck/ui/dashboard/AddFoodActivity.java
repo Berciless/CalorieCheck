@@ -13,7 +13,7 @@ import com.lpai.caloriecheck.R;
 
 public class AddFoodActivity extends AppCompatActivity {
 
-    public static final String EXTRA_REPLY="com.example.android.roomFoodsample.REPLY";
+    public static final String EXTRA_REPLY="REPLY";
     private EditText newFood;
 
     @Override
@@ -28,7 +28,6 @@ public class AddFoodActivity extends AppCompatActivity {
             if(TextUtils.isEmpty(newFood.getText())){
                 setResult(RESULT_CANCELED,replyIntent);
             } else{
-
                 String name = newFood.getText().toString();
                 replyIntent.putExtra(EXTRA_REPLY,name);
                 setResult(RESULT_OK, replyIntent);

@@ -2,8 +2,6 @@ package com.lpai.caloriecheck.ui.dashboard;
 
 
 public class FoodItemModel {
-
-
     public String name;
     public double proteins;
     public double carbs;

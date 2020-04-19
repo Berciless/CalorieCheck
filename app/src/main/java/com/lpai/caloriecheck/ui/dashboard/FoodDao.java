@@ -20,4 +20,6 @@ public interface FoodDao {
     @Query("SELECT * FROM daily_food")
     LiveData<List<Food>> getTodaySFood();
 
+//    @Query("SELECT * FROM daily_food WHERE id=")
+
 }

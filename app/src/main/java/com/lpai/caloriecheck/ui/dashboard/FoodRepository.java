@@ -1,7 +1,9 @@
 package com.lpai.caloriecheck.ui.dashboard;
 
 import android.app.Application;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
+import android.preference.PreferenceScreen;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -25,6 +27,18 @@ public class FoodRepository {
 
     public void insert(Food food) {
         new insertAsyncTask(foodDao).execute(food);
+    }
+
+    public void deleteAll(){new deleteAllAsyncTask(foodDao).execute();}
+
+    private static class deleteAllAsyncTask extends AsyncTask<Void, Void, Void>{
+        private FoodDao asyncTaskDao;
+        deleteAllAsyncTask(FoodDao dao){ asyncTaskDao=dao; }
+        @Override
+        protected Void doInBackground(Void... voids){
+            asyncTaskDao.deleteAll();
+            return null;
+        }
     }
 
     private static class insertAsyncTask extends AsyncTask<Food, Void, Void> {
