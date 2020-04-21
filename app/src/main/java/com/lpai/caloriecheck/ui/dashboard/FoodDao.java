@@ -11,7 +11,7 @@ import java.util.List;
 
 @Dao
 public interface FoodDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert
     void insert(Food food);
 
     @Query("DELETE FROM daily_food")
@@ -20,6 +20,7 @@ public interface FoodDao {
     @Query("SELECT * FROM daily_food")
     LiveData<List<Food>> getTodaySFood();
 
-//    @Query("SELECT * FROM daily_food WHERE id=")
+    @Query("SELECT * FROM daily_food WHERE foodId=:id")
+    public Food getFoodById(long id);
 
 }

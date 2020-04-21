@@ -31,5 +31,15 @@ public class Food {
         this.fat = 10;
         this.calories = 570;
     }
+    @Ignore
+    public Food(MacroRatio macroRatio, double quantity) {
+        this.name = macroRatio.name;
+        this.proteins = macroRatio.proteinRatio*quantity;
+        this.carbs    = macroRatio.carbsRatio*quantity;
+        this.fat      = macroRatio.fatRatio*quantity;
+        this.calories = macroRatio.caloriesRatio*quantity;
+    }
+
+
 
 }

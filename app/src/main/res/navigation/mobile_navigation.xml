@@ -21,7 +21,7 @@
         android:id="@+id/navigation_exercises"
         android:name="com.lpai.caloriecheck.ui.exercises.ExercisesFragment"
         android:label="@string/title_exercises"
-        tools:layout="@layout/fragment_exercisees" />
+        tools:layout="@layout/fragment_exercises" />
 
     <fragment
         android:id="@+id/navigation_notifications"

@@ -1,15 +1,15 @@
 package com.lpai.caloriecheck.ui.dashboard;
 
-import androidx.appcompat.app.AppCompatActivity;
+        import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.text.TextUtils;
+        import android.widget.Button;
+        import android.widget.EditText;
+        import android.widget.Toast;
 
-import com.lpai.caloriecheck.R;
+        import com.lpai.caloriecheck.R;
 
 public class AddFoodActivity extends AppCompatActivity {
 

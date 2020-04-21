@@ -7,11 +7,13 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.lpai.caloriecheck.ui.Database.FoodRepository;
+
 import java.util.List;
 
 public class DashboardViewModel extends AndroidViewModel {
 
-    private  FoodRepository repository;
+    private FoodRepository repository;
 
     private LiveData<List<Food>> todaySFood;
     public DashboardViewModel(Application application){

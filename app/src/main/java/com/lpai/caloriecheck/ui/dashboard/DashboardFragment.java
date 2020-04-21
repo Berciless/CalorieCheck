@@ -59,7 +59,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         deleteAllBtn=(Button) root.findViewById(R.id.button3);
         deleteAllBtn.setOnClickListener(e->dashboardViewModel.deleteAll());
 
-        Button button = root.findViewById(R.id.button);
+        Button button = root.findViewById(R.id.addFoodBtn);
         button.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(),AddFoodActivity.class);
             startActivityForResult(intent,ADD_FOOD_REQUEST_CODE);
