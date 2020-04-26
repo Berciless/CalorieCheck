@@ -21,11 +21,22 @@
         android:id="@+id/navigation_exercises"
         android:name="com.lpai.caloriecheck.ui.exercises.ExercisesFragment"
         android:label="@string/title_exercises"
-        tools:layout="@layout/fragment_exercises" />
+        tools:layout="@layout/fragment_exercises" >
+        <action
+            android:id="@+id/action_navigation_exercises_to_exerciseScreen"
+            app:destination="@id/exerciseScreen" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.lpai.caloriecheck.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <activity
+        android:id="@+id/exerciseScreen"
+        android:name="com.lpai.caloriecheck.ExerciseScreen"
+        android:label="activity_exercise_screen"
+        tools:layout="@layout/activity_exercise_screen" >
+        <argument android:name="exerciseId" />
+    </activity>
 </navigation>

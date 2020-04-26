@@ -1,11 +1,13 @@
 package com.lpai.caloriecheck.ui.exercises;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lpai.caloriecheck.R;
@@ -34,8 +36,14 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
             Exercise exerciseItem = exercises.get(position);
             holder.txtName.setText(exerciseItem.name);
 
-//AICI O SA SETEZI NAVIGAREA CATRE UPDATE SAU DELET PT UN ANUME FOOD DIN DYLY_FOOD
-            holder.itemView.setOnClickListener(v -> System.out.println(exerciseItem.exerciseId));
+            holder.itemView.setOnClickListener(v ->{
+                long id=exerciseItem.exerciseId;
+                Bundle bundle = new Bundle();
+                bundle.putString("exerciseName",exerciseItem.name);
+//                bundle.putLong("exerciseId",exerciseItem.exerciseId);
+                Navigation.findNavController(holder.itemView).navigate(R.id.action_navigation_exercises_to_exerciseScreen,bundle);
+
+            });
         } else {
             holder.txtName.setText("ERROR");
 
@@ -64,15 +72,8 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
         private ExerciseViewHolder(View itemView) {
             super(itemView);
             txtName= itemView.findViewById(R.id.name);
-//            itemView.setOnClickListener(this);
         }
 
-//        @Override
-//        public void onClick(View v) {
-//            Toast.makeText(
-//                    context,
-//                    "ai apasat"+getLayoutPosition(),
-//                    Toast.LENGTH_SHORT).show();
-//        }
+
     }
 }
