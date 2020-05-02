@@ -67,12 +67,5 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
 //            itemView.setOnClickListener(this);
         }
 
-//        @Override
-//        public void onClick(View v) {
-//            Toast.makeText(
-//                    context,
-//                    "ai apasat"+getLayoutPosition(),
-//                    Toast.LENGTH_SHORT).show();
-//        }
     }
 }
