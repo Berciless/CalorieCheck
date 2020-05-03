@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,20 +18,23 @@ import java.util.List;
 
 
 public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapter.ExerciseViewHolder>{
-
+    private DeleteItemListener deleteListener;
+    private EditItemListener editListener;
     private final LayoutInflater inflater;
     private List<Exercise> exercises; // Cached copy of exercises
     Context context;
-    ExerciseListAdapter(Context context) {
+    ExerciseListAdapter(Context context, DeleteItemListener deleteListener, EditItemListener editListener) {
         inflater = LayoutInflater.from(context);
         this.context=context;
+        this.deleteListener = deleteListener;
+        this.editListener = editListener;
     }
     public View.OnClickListener clickListener;
 
     @Override
     public ExerciseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = inflater.inflate(R.layout.exercise_item, parent, false);
-        return new ExerciseViewHolder(itemView);
+        return new ExerciseViewHolder(itemView,deleteListener,editListener);
     }
 
     @Override
@@ -38,7 +42,6 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
         if (exercises != null) {
             Exercise exerciseItem = exercises.get(position);
             holder.txtName.setText(exerciseItem.name);
-
             holder.itemView.setOnClickListener(v ->
                     {
                         Intent intent = new Intent(context, ExerciseScreen.class);
@@ -54,6 +57,38 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
         }
     }
 
+
+
+    class ExerciseViewHolder extends RecyclerView.ViewHolder  {
+        TextView txtName;
+        ImageButton deleteExerciseBtn;
+        ImageButton editExerciseBtn;
+        DeleteItemListener deleteItemListener;
+        EditItemListener editItemListener;
+
+        private ExerciseViewHolder(View itemView,DeleteItemListener deleteItemListener,EditItemListener editItemListener) {
+            super(itemView);
+            txtName= itemView.findViewById(R.id.name);
+            deleteExerciseBtn = itemView.findViewById(R.id.delete_exercise);
+            editExerciseBtn= itemView.findViewById(R.id.edit_exercise);
+            this.editItemListener = editItemListener;
+            editExerciseBtn.setOnClickListener(
+                    v->editListener.onEditPressed(exercises.get(getAdapterPosition()).exerciseId));
+            this.deleteItemListener =deleteItemListener;
+            deleteExerciseBtn.setOnClickListener(
+                    v->deleteListener.onDeletePressed(exercises.get(getAdapterPosition()).exerciseId));
+
+        }
+    }
+
+    public interface DeleteItemListener{
+        void onDeletePressed(long id);
+    }
+
+    public interface  EditItemListener{
+        void onEditPressed(long id);
+    }
+
     void setExercises(List<Exercise> exercisesToSet){
         exercises = exercisesToSet;
         notifyDataSetChanged();
@@ -66,15 +101,5 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
         if (exercises != null)
             return exercises.size();
         else return 0;
-    }
-
-    class ExerciseViewHolder extends RecyclerView.ViewHolder  {
-        TextView txtName;
-
-        private ExerciseViewHolder(View itemView) {
-            super(itemView);
-            txtName= itemView.findViewById(R.id.name);
-        }
-
     }
 }

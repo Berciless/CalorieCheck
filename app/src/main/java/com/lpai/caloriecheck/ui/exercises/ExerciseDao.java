@@ -27,7 +27,8 @@ public interface ExerciseDao {
     @Query("DELETE FROM exerciseset")
     void deleteAllSets();
 
-
+    @Query("DELETE FROM exercises WHERE exerciseId=:id")
+    void deleteExerciseById(long id);
 
     @Query("DELETE FROM exerciseset WHERE setId=:id")
     void deleteSetById(long id);

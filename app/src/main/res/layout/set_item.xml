@@ -67,7 +67,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginHorizontal="5dp"
-            app:srcCompat="@android:drawable/btn_dialog" />
+            app:srcCompat="@drawable/ic_delete" />
 
 
 

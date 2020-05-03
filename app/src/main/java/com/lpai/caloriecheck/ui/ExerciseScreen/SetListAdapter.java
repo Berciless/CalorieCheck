@@ -48,9 +48,6 @@ public class SetListAdapter extends RecyclerView.Adapter<SetListAdapter.SetViewH
             holder.txtReps.setText(String.valueOf(setItem.reps));
             holder.txtWeight.setText(String.valueOf(setItem.weight));
             holder.txtDate.setText(setItem.date);
-//            holder.deleteSetBtn.setOnClickListener(v ->
-//                    listener.onDeletePressed(setItem.setId)
-//            );
         } else {
             holder.txtReps.setText("ERROR");
 
@@ -66,27 +63,23 @@ public class SetListAdapter extends RecyclerView.Adapter<SetListAdapter.SetViewH
         ImageButton deleteSetBtn;
         DeleteItemListener deleteItemListener;
 
-        public SetViewHolder(View itemView, DeleteItemListener deleteItemListener) {
+        private SetViewHolder(View itemView, DeleteItemListener deleteItemListener) {
             super(itemView);
             deleteSetBtn =itemView.findViewById(R.id.delete_set);
             txtReps= itemView.findViewById(R.id.reps);
             txtWeight= itemView.findViewById(R.id.weight);
             txtDate = itemView.findViewById(R.id.set_date);
             this.deleteItemListener=deleteItemListener;
-            deleteSetBtn.setOnClickListener(v->listener.onDeletePressed(sets.get(getAdapterPosition()).setId));
+            deleteSetBtn.setOnClickListener(
+                    v->listener.onDeletePressed(sets.get(getAdapterPosition()).setId));
         }
 
-        public void onClick(View v) {
-            listener.onDeletePressed(sets.get(getAdapterPosition()).setId);
-        }
     }
 
 
     public interface DeleteItemListener{
         void onDeletePressed(long id);
     }
-
-
 
     void setSets(List<ExerciseSet> setsToSet){
         sets = setsToSet;

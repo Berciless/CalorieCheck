@@ -28,20 +28,6 @@ public class ExercisesRepository {
         new insertAsyncTask(exerciseDao).execute(exercise);
     }
 
-    public void deleteAll(){
-        new deleteAllAsyncTask(exerciseDao).execute();
-    }
-
-    public static class deleteAllAsyncTask extends AsyncTask<Void, Void, Void> {
-        private ExerciseDao asyncTaskDao;
-        deleteAllAsyncTask(ExerciseDao dao){ asyncTaskDao=dao; }
-        @Override
-        protected Void doInBackground(Void... voids){
-            asyncTaskDao.deleteAllExercises();
-            return null;
-        }
-    }
-
     public static class insertAsyncTask extends AsyncTask<Exercise, Void, Void> {
         private ExerciseDao asyncTaskDao;
 
@@ -55,4 +41,29 @@ public class ExercisesRepository {
         }
 
     }
+
+
+    public void deleteExerciseById(long id) { new deleteByIdAsyncTask(exerciseDao).execute(id); }
+    public class deleteByIdAsyncTask extends AsyncTask<Long, Void, Void>{
+        private ExerciseDao asyncTaskDao;
+
+        deleteByIdAsyncTask(ExerciseDao dao){asyncTaskDao=dao;}
+        @Override
+        protected Void doInBackground(Long... longs) {
+            asyncTaskDao.deleteExerciseById(longs[0]);
+            return null;
+        }
+    }
+
+    public void deleteAll(){ new deleteAllAsyncTask(exerciseDao).execute(); }
+    public static class deleteAllAsyncTask extends AsyncTask<Void, Void, Void> {
+        private ExerciseDao asyncTaskDao;
+        deleteAllAsyncTask(ExerciseDao dao){ asyncTaskDao=dao; }
+        @Override
+        protected Void doInBackground(Void... voids){
+            asyncTaskDao.deleteAllExercises();
+            return null;
+        }
+    }
+
 }

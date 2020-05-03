@@ -44,11 +44,19 @@ public class SetsRepository  {
 
     }
 
-    public void deleteSetsByExercise(long id){ exerciseDao.deleteSetByExercise(id);}
+    public void deleteSetsByExercise(long id){ new deleteByExerciseAsyncTask(exerciseDao).execute(id);}
+    public static class deleteByExerciseAsyncTask extends AsyncTask<Long, Void, Void>{
+        private ExerciseDao asyncTaskDao;
+        deleteByExerciseAsyncTask(ExerciseDao dao){asyncTaskDao=dao;}
+        @Override
+        protected Void doInBackground(Long... longs) {
+            asyncTaskDao.deleteSetByExercise(longs[0]);
+            return null;
+        }
+    }
 
 
     public void deleteSetById(long id) { new deleteSetByIdAsyncTask(exerciseDao).execute(id); }
-
     public static class deleteSetByIdAsyncTask extends  AsyncTask<Long,Void,Void>{
         private ExerciseDao asyncTaskDao;
         deleteSetByIdAsyncTask(ExerciseDao dao){ asyncTaskDao=dao;}

@@ -14,13 +14,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lpai.caloriecheck.R;
+import com.lpai.caloriecheck.ui.Database.SetsRepository;
+
 import static android.app.Activity.RESULT_OK;
 
 
-public class ExercisesFragment extends Fragment implements View.OnClickListener {
+public class ExercisesFragment extends Fragment implements  ExerciseListAdapter.DeleteItemListener , ExerciseListAdapter.EditItemListener {
 
     public static final int ADD_EXERCISE_REQUEST_CODE = 2;
-
+    SetsRepository repository ;
     ExercisesViewModel exercisesViewModel;
     TextView totalCalories;
     Button deleteAllBtn;
@@ -35,7 +37,7 @@ public class ExercisesFragment extends Fragment implements View.OnClickListener 
 
         recyclerView = (RecyclerView) root.findViewById(R.id.recyclerview);
 
-        ExerciseListAdapter adapter = new ExerciseListAdapter(this.getActivity());
+        ExerciseListAdapter adapter = new ExerciseListAdapter(this.getActivity(),this,this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
@@ -48,8 +50,8 @@ public class ExercisesFragment extends Fragment implements View.OnClickListener 
         deleteAllBtn=(Button) root.findViewById(R.id.deleteExercises);
         deleteAllBtn.setOnClickListener(e->exercisesViewModel.deleteAll());
 
-        Button button = root.findViewById(R.id.addExerciseBtn);
-        button.setOnClickListener(v -> {
+        Button addExerciseBtn = root.findViewById(R.id.addExerciseBtn);
+        addExerciseBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(),AddExerciseActivity.class);
             startActivityForResult(intent,ADD_EXERCISE_REQUEST_CODE);
         });
@@ -59,19 +61,8 @@ public class ExercisesFragment extends Fragment implements View.OnClickListener 
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-
     }
 
-    @Override
-    public void onClick(View v) {
-        int pos = recyclerView.indexOfChild(v);
-        Toast.makeText(
-                getActivity().getApplicationContext(),
-                "aiapasat"+pos,
-                Toast.LENGTH_LONG).show();
-
-    }
 
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode,resultCode,data);
@@ -89,4 +80,14 @@ public class ExercisesFragment extends Fragment implements View.OnClickListener 
         }
     }
 
+    @Override
+    public void onDeletePressed(long id) {
+        exercisesViewModel.deleteExercise(id);
+
+    }
+
+    @Override
+    public void onEditPressed(long id) {
+        exercisesViewModel.deleteExercise(id);
+    }
 }
