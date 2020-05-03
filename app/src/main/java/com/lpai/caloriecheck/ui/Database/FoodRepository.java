@@ -27,6 +27,19 @@ public class FoodRepository {
     public void insert(Food food) {
         new insertAsyncTask(foodDao).execute(food);
     }
+    public static class insertAsyncTask extends AsyncTask<Food, Void, Void> {
+        private FoodDao asyncTaskDao;
+
+        insertAsyncTask(FoodDao dao) {
+            asyncTaskDao = dao;
+        }
+        @Override
+        protected Void doInBackground(final Food... params){
+            asyncTaskDao.insert(params[0]);
+            return null;
+        }
+
+    }
 
     public void deleteAll(){
         new deleteAllAsyncTask(foodDao).execute();
@@ -42,17 +55,4 @@ public class FoodRepository {
         }
     }
 
-    public static class insertAsyncTask extends AsyncTask<Food, Void, Void> {
-        private FoodDao asyncTaskDao;
-
-        insertAsyncTask(FoodDao dao) {
-            asyncTaskDao = dao;
-        }
-        @Override
-        protected Void doInBackground(final Food... params){
-            asyncTaskDao.insert(params[0]);
-            return null;
-        }
-
-    }
 }

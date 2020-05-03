@@ -28,7 +28,7 @@ import java.sql.SQLOutput;
 import static android.app.Activity.RESULT_OK;
 
 
-public class DashboardFragment extends Fragment implements View.OnClickListener {
+public class DashboardFragment extends Fragment  {
 
     public static final int ADD_FOOD_REQUEST_CODE = 1;
 
@@ -36,6 +36,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     TextView totalCalories;
     Button deleteAllBtn;
     RecyclerView recyclerView;
+    FoodListAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -46,7 +47,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
         recyclerView = (RecyclerView) root.findViewById(R.id.recyclerview);
 
-        FoodListAdapter adapter = new FoodListAdapter(this.getActivity());
+        adapter = new FoodListAdapter(this.getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
@@ -54,8 +55,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
         dashboardViewModel.getTodaySFood().observe(getViewLifecycleOwner(), adapter::setFoods);
         totalCalories=(TextView) root.findViewById(R.id.totalCalories);
-
-
         deleteAllBtn=(Button) root.findViewById(R.id.button3);
         deleteAllBtn.setOnClickListener(e->dashboardViewModel.deleteAll());
 
@@ -73,28 +72,24 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
     }
 
-    @Override
-    public void onClick(View v) {
-        int pos = recyclerView.indexOfChild(v);
-        Toast.makeText(
-                getActivity().getApplicationContext(),
-                "aiapasat"+pos,
-                Toast.LENGTH_LONG).show();
-
-    }
 
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode,resultCode,data);
+        totalCalories.setText(String.valueOf(adapter.total));
         if(requestCode == ADD_FOOD_REQUEST_CODE && resultCode == RESULT_OK){
-            Food food = new Food(data.getStringExtra(AddFoodActivity.EXTRA_REPLY));
+            Food food = new Food(
+                    data.getExtras().getString("name"),
+                    data.getExtras().getDouble("protein"),
+                    data.getExtras().getDouble("fat"),
+                    data.getExtras().getDouble("carbs"),
+                    data.getExtras().getDouble("calories")
+                    );
             dashboardViewModel.insert(food);
-
-
 
         } else {
             Toast.makeText(
                     getActivity().getApplicationContext(),
-                    R.string.fat,
+                    "some kind of error",
                     Toast.LENGTH_LONG).show();
         }
     }

@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
-@Entity
+@Entity(tableName = "sets")
 public class ExerciseSet {
     @PrimaryKey(autoGenerate = true)
     public long setId;

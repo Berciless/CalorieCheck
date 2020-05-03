@@ -15,7 +15,7 @@ import com.lpai.caloriecheck.ui.dashboard.FoodDao;
 import com.lpai.caloriecheck.ui.exercises.Exercise;
 import com.lpai.caloriecheck.ui.exercises.ExerciseDao;
 
-@Database(entities={Food.class, Exercise.class, ExerciseSet.class},version = 3,exportSchema = false)
+@Database(entities={Food.class, Exercise.class, ExerciseSet.class},version = 4,exportSchema = false)
 public abstract class AppRoomDatabase extends RoomDatabase {
     public abstract FoodDao foodDao();
     public abstract ExerciseDao exerciseDao();

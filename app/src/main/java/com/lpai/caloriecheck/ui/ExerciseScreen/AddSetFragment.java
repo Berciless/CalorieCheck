@@ -4,6 +4,7 @@ package com.lpai.caloriecheck.ui.ExerciseScreen;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,7 @@ public class AddSetFragment extends DialogFragment {
         Button addBtn = v.findViewById(R.id.confirm_set);
         Button cancelSetBtn = v.findViewById(R.id.cancel_set);
         addBtn.setOnClickListener(v1 -> {
-            if(!reps.getText().toString().equals("")  && !weight.getText().toString().equals("")) {
+            if(!TextUtils.isEmpty(reps.getText()) && !TextUtils.isEmpty(weight.getText())) {
                 listener.onAddClicked(Integer.parseInt(reps.getText().toString()), Double.parseDouble(weight.getText().toString()));
             }else{
                 Toast.makeText(getContext(),"Introduce number of repetitions AND weight",Toast.LENGTH_LONG).show();
