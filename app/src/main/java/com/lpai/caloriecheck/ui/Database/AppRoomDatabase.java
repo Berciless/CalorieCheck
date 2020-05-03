@@ -9,12 +9,13 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.lpai.caloriecheck.ui.ExerciseScreen.ExerciseSet;
 import com.lpai.caloriecheck.ui.dashboard.Food;
 import com.lpai.caloriecheck.ui.dashboard.FoodDao;
 import com.lpai.caloriecheck.ui.exercises.Exercise;
 import com.lpai.caloriecheck.ui.exercises.ExerciseDao;
 
-@Database(entities={Food.class, Exercise.class},version = 2,exportSchema = false)
+@Database(entities={Food.class, Exercise.class, ExerciseSet.class},version = 3,exportSchema = false)
 public abstract class AppRoomDatabase extends RoomDatabase {
     public abstract FoodDao foodDao();
     public abstract ExerciseDao exerciseDao();
@@ -57,12 +58,17 @@ public abstract class AppRoomDatabase extends RoomDatabase {
 //             Start the app with a clean database every time.
 //             Not needed if you only populate the database
 //             when it is first created
-            dao.deleteAll();
+//            dao.deleteAllExercises();
+//            dao.deleteAllSets();
 
-            for (int i = 0; i < exercises.length ; i++) {
-                Exercise exercise = new Exercise(exercises[i]);
-                dao.insert(exercise);
-            }
+//            for (int i = 0; i < exercises.length ; i++) {
+//                Exercise exercise = new Exercise(exercises[i]);
+//                dao.insertExercise(exercise);
+//                dao.insertSet(new ExerciseSet(1, 10, 30.5));
+//                dao.insertSet(new ExerciseSet(2, 20, 30.5));
+//                dao.insertSet(new ExerciseSet(3, 20, 90.5));
+//
+//            }
             return null;
         }
     }

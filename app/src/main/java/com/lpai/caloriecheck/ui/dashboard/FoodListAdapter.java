@@ -79,15 +79,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
             txtProteins= itemView.findViewById(R.id.proteins);
             txtCarbs= itemView.findViewById(R.id.carbs);
             txtFat = itemView.findViewById(R.id.fat);
-//            itemView.setOnClickListener(this);
         }
 
-//        @Override
-//        public void onClick(View v) {
-//            Toast.makeText(
-//                    context,
-//                    "ai apasat"+getLayoutPosition(),
-//                    Toast.LENGTH_SHORT).show();
-//        }
     }
 }

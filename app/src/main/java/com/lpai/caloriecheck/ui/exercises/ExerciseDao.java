@@ -6,20 +6,45 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
+
+import com.lpai.caloriecheck.ui.ExerciseScreen.ExerciseAndSets;
+import com.lpai.caloriecheck.ui.ExerciseScreen.ExerciseSet;
 
 import java.util.List;
 
 @Dao
 public interface ExerciseDao {
     @Insert
-    void insert(Exercise exercise);
+    void insertExercise(Exercise exercise);
+
+    @Insert
+    void insertSet(ExerciseSet set);
 
     @Query("DELETE FROM exercises")
-    void deleteAll();
+    void deleteAllExercises();
+
+    @Query("DELETE FROM exerciseset")
+    void deleteAllSets();
+
+
+
+    @Query("DELETE FROM exerciseset WHERE setId=:id")
+    void deleteSetById(long id);
 
     @Query("SELECT * FROM exercises")
-    LiveData<List<Exercise>> getTodaySExercise();
+    LiveData<List<Exercise>> getExercise();
 
-//    @Query("SELECT * FROM exercises WHERE exerciseId=$id)
+
+    @Query("SELECT * FROM exerciseset")
+    public LiveData<List<ExerciseSet>> getAllSets();
+
+    @Query("SELECT * FROM exerciseset WHERE exerciseId=:id ORDER BY setId desc")
+    public LiveData<List<ExerciseSet>> getSetsForExercise(long id);
+
+    @Query("DELETE FROM exerciseset WHERE exerciseId=:id")
+    void deleteSetByExercise(long id);
+
+//    @Query("SELECT * FROM exercises WHERE exerciseId=:id)
 }
 

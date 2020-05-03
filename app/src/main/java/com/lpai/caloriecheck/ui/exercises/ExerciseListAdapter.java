@@ -1,6 +1,8 @@
 package com.lpai.caloriecheck.ui.exercises;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +11,13 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lpai.caloriecheck.R;
+import com.lpai.caloriecheck.ui.ExerciseScreen.ExerciseScreen;
 
 import java.util.List;
 
+
 public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapter.ExerciseViewHolder>{
+
     private final LayoutInflater inflater;
     private List<Exercise> exercises; // Cached copy of exercises
     Context context;
@@ -34,8 +39,15 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
             Exercise exerciseItem = exercises.get(position);
             holder.txtName.setText(exerciseItem.name);
 
-//AICI O SA SETEZI NAVIGAREA CATRE UPDATE SAU DELET PT UN ANUME FOOD DIN DYLY_FOOD
-            holder.itemView.setOnClickListener(v -> System.out.println(exerciseItem.exerciseId));
+            holder.itemView.setOnClickListener(v ->
+                    {
+                        Intent intent = new Intent(context, ExerciseScreen.class);
+                        Bundle extras = new Bundle();
+                        extras.putLong("exerciseId",exerciseItem.exerciseId);
+                        extras.putString("exerciseName",exerciseItem.name);
+                        intent.putExtras(extras);
+                        context.startActivity(intent);
+                    });
         } else {
             holder.txtName.setText("ERROR");
 
@@ -59,12 +71,9 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
     class ExerciseViewHolder extends RecyclerView.ViewHolder  {
         TextView txtName;
 
-
-
         private ExerciseViewHolder(View itemView) {
             super(itemView);
             txtName= itemView.findViewById(R.id.name);
-//            itemView.setOnClickListener(this);
         }
 
     }

@@ -8,4 +8,6 @@
     <string name="calories">Calories:</string>
     <string name="carbs">Carbs:</string>
     <string name="fat">Fats:</string>
+    <string name="addSet">Add</string>
+    <string name="cancel">cancel</string>
 </resources>

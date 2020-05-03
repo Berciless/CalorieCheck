@@ -12,16 +12,16 @@ import java.util.List;
 
 public class ExercisesRepository {
     private ExerciseDao exerciseDao;
-    private LiveData<List<Exercise>> todaySExercise;
+    private LiveData<List<Exercise>> exercise;
 
     public ExercisesRepository(Application application) {
         AppRoomDatabase db = AppRoomDatabase.getDatabase(application);
         exerciseDao = db.exerciseDao();
-        todaySExercise = exerciseDao.getTodaySExercise();
+        exercise = exerciseDao.getExercise();
     }
 
     public LiveData<List<Exercise>> getTodaySExercise() {
-        return todaySExercise;
+        return exercise;
     }
 
     public void insert(Exercise exercise) {
@@ -37,7 +37,7 @@ public class ExercisesRepository {
         deleteAllAsyncTask(ExerciseDao dao){ asyncTaskDao=dao; }
         @Override
         protected Void doInBackground(Void... voids){
-            asyncTaskDao.deleteAll();
+            asyncTaskDao.deleteAllExercises();
             return null;
         }
     }
@@ -50,7 +50,7 @@ public class ExercisesRepository {
         }
         @Override
         protected Void doInBackground(final Exercise... params){
-            asyncTaskDao.insert(params[0]);
+            asyncTaskDao.insertExercise(params[0]);
             return null;
         }
 

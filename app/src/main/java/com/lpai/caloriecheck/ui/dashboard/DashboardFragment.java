@@ -71,7 +71,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
     }
 
     @Override

@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.ExerciseScreen.ExerciseScreen"></activity>
-        <activity android:name=".ui.dashboard.AddFoodActivity" />
+        <activity android:name=".ui.ExerciseScreen.ExerciseScreen"
+            android:label="Exercises"/>
+        <activity android:name=".ui.dashboard.AddFoodActivity"
+            android:label="Add Food"/>
         <activity android:name=".ui.exercises.AddExerciseActivity" />
         <activity
             android:name=".MainActivity"
