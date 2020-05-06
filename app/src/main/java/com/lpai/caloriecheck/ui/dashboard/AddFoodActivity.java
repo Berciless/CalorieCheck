@@ -30,7 +30,6 @@ public class AddFoodActivity extends AppCompatActivity {
         newFoodFats =findViewById(R.id.newFoodFats);
         newFoodClories =findViewById(R.id.newFoodCalories);
         newFoodProteins= findViewById(R.id.newFoodProteins);
-
         final Button button =findViewById(R.id.confirm_food);
         button.setOnClickListener(view -> {
             Intent replyIntent = new Intent();

@@ -3,11 +3,40 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Food intake</string>
     <string name="title_exercises">Exercises</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_notifications">BMR Calculator</string>
     <string name="proteins">Proteins:</string>
     <string name="calories">Calories:</string>
     <string name="carbs">Carbs:</string>
     <string name="fat">Fats:</string>
     <string name="addSet">Add</string>
-    <string name="cancel">cancel</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="caloreis">Caloreis</string>
+    <string name="will_be_aproximated_if_empty">aproximated if empty</string>
+    <string name="calories_aproximated_if_let_empty">Calories (aproximated if let empty)</string>
+    <string name="grams_of_carbohidrates">grams of carbohidrates</string>
+    <string name="grams_of_fat">grams of fat</string>
+    <string name="set">Set</string>
+    <string name="grams_of_protein">grams of protein</string>
+    <string name="add_exercise">Add Exercise</string>
+    <string name="protein">Protein</string>
+    <string name="name">Name</string>
+    <string name="bmr">BMR:</string>
+    <string name="compute_bmr">Estimate BMR</string>
+    <string name="sex">Sex</string>
+    <string name="height">Height in centimeters</string>
+    <string name="weight_in_kilograms">Weight in kilograms</string>
+    <string name="exercise_name">Exercise name</string>
+    <string name="activity_level">Activity level</string>
+    <string-array name="activity_array">
+        <item>Sedentary: very low activity level</item>
+        <item>Lightly active: exercise 1–3 times/week</item>
+        <item>Moderately active: exercise 3–5 times/week</item>
+        <item>Active: daily exercise or intense exercise 3–4 times/week</item>
+        <item>Very active: daily intense exercise</item>
+    </string-array>
+    <string-array name="sex_array">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>

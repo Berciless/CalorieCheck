@@ -1,23 +1,15 @@
 package com.lpai.caloriecheck.ui.ExerciseScreen;
 
-import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lpai.caloriecheck.R;
-import com.lpai.caloriecheck.ui.Database.SetsRepository;
-import com.lpai.caloriecheck.ui.exercises.Exercise;
 
 import java.util.List;
 

@@ -2,7 +2,6 @@ package com.lpai.caloriecheck.ui.ExerciseScreen;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -16,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.lpai.caloriecheck.R;
 
 public class AddSetFragment extends DialogFragment {
@@ -39,15 +37,7 @@ public class AddSetFragment extends DialogFragment {
             }
             dismiss();
         });
-
-        cancelSetBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
-
-
+        cancelSetBtn.setOnClickListener(v12 -> dismiss());
         return v;
     }
 

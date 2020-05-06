@@ -24,40 +24,25 @@ import com.lpai.caloriecheck.MainActivity;
 import com.lpai.caloriecheck.R;
 
 import java.sql.SQLOutput;
+import java.util.Objects;
 
 import static android.app.Activity.RESULT_OK;
 
 
-public class DashboardFragment extends Fragment  {
+public class DashboardFragment extends Fragment implements FoodListAdapter.DeleteFoodListener {
 
-    public static final int ADD_FOOD_REQUEST_CODE = 1;
+    private static final int ADD_FOOD_REQUEST_CODE = 1;
 
-    DashboardViewModel dashboardViewModel;
-    TextView totalCalories;
-    Button deleteAllBtn;
-    RecyclerView recyclerView;
-    FoodListAdapter adapter;
+    private DashboardViewModel dashboardViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
-
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-
-        recyclerView = (RecyclerView) root.findViewById(R.id.recyclerview);
-
-        adapter = new FoodListAdapter(this.getActivity());
+        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recyclerview);
+        FoodListAdapter adapter = new FoodListAdapter(this.getActivity(), this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-
-
-
         dashboardViewModel.getTodaySFood().observe(getViewLifecycleOwner(), adapter::setFoods);
-        totalCalories=(TextView) root.findViewById(R.id.totalCalories);
-        deleteAllBtn=(Button) root.findViewById(R.id.button3);
-        deleteAllBtn.setOnClickListener(e->dashboardViewModel.deleteAll());
-
         Button button = root.findViewById(R.id.addFoodBtn);
         button.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(),AddFoodActivity.class);
@@ -75,23 +60,21 @@ public class DashboardFragment extends Fragment  {
 
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode,resultCode,data);
-        totalCalories.setText(String.valueOf(adapter.total));
         if(requestCode == ADD_FOOD_REQUEST_CODE && resultCode == RESULT_OK){
+            assert data != null;
             Food food = new Food(
-                    data.getExtras().getString("name"),
+                    Objects.requireNonNull(data.getExtras()).getString("name"),
                     data.getExtras().getDouble("protein"),
-                    data.getExtras().getDouble("fat"),
                     data.getExtras().getDouble("carbs"),
+                    data.getExtras().getDouble("fat"),
                     data.getExtras().getDouble("calories")
                     );
             dashboardViewModel.insert(food);
-
-        } else {
-            Toast.makeText(
-                    getActivity().getApplicationContext(),
-                    "some kind of error",
-                    Toast.LENGTH_LONG).show();
         }
     }
 
+    @Override
+    public void onDeletePressed(long id) {
+        dashboardViewModel.deleteFoodById(id);
+    }
 }

@@ -11,10 +11,7 @@ public class Exercise {
     public long exerciseId;
     public String name;
 
-
     public Exercise( String name) {
         this.name = name;
-
     }
-
 }

@@ -1,24 +1,15 @@
 package com.lpai.caloriecheck.ui.ExerciseScreen;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Application;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.lpai.caloriecheck.R;
-import com.lpai.caloriecheck.ui.Database.ExercisesRepository;
-
-import java.util.List;
 
 public class ExerciseScreen extends AppCompatActivity implements AddSetFragment.DialogListener , SetListAdapter.DeleteItemListener {
 

@@ -18,16 +18,14 @@ public class SetViewModel extends AndroidViewModel {
         super(application);
         repository = new SetsRepository(application);
         sets = new MutableLiveData<>();
-//        sets = repository.getSetsForExercise();
     }
 
-    public LiveData<List<ExerciseSet>> getSets(long id){
+    LiveData<List<ExerciseSet>> getSets(long id){
        return repository.getSetsForExercise(id);
     }
 
     public void insert(ExerciseSet set){repository.insert(set);}
 
-    public void deleteSetById(long id){repository.deleteSetById(id);}
+    void deleteSetById(long id){repository.deleteSetById(id);}
 
-    public void deleteAllSets(){repository.deleteAllSets();}
 }

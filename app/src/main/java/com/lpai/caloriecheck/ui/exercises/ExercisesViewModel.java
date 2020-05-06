@@ -25,7 +25,7 @@ public class ExercisesViewModel extends AndroidViewModel {
 
     }
 
-    public void deleteExercise(long id){
+    void deleteExercise(long id){
         repository.deleteExerciseById(id);
         setRepository.deleteSetsByExercise(id);
     }
@@ -34,7 +34,7 @@ public class ExercisesViewModel extends AndroidViewModel {
 
     }
 
-    public LiveData<List<Exercise>> getTodaySExercise(){ return todaySExercise; }
+    LiveData<List<Exercise>> getTodaySExercise(){ return todaySExercise; }
 
     public void insert(Exercise exercise){repository.insert(exercise);}
 

@@ -17,22 +17,17 @@ public class SetsRepository  {
     public SetsRepository(Application application) {
         AppRoomDatabase db = AppRoomDatabase.getDatabase(application);
         exerciseDao = db.exerciseDao();
-//        sets = exerciseDao.getAllSets();
     }
 
     public LiveData<List<ExerciseSet>> getSetsForExercise(long id) {
         return exerciseDao.getSetsForExercise(id);
     }
 
-
     public void insert(ExerciseSet set) {
         new insertAsyncTask(exerciseDao).execute(set);
     }
-
-
     public static class insertAsyncTask extends AsyncTask<ExerciseSet, Void, Void> {
         private ExerciseDao asyncTaskDao;
-
         insertAsyncTask(ExerciseDao dao) {
             asyncTaskDao = dao;
         }
@@ -63,20 +58,6 @@ public class SetsRepository  {
         @Override
         protected Void doInBackground(Long... longs) {
             asyncTaskDao.deleteSetById(longs[0]);
-            return null;
-        }
-    }
-
-    public void deleteAllSets(){
-        new deleteAllAsyncTask(exerciseDao).execute();
-    }
-
-    public static class deleteAllAsyncTask extends AsyncTask<Void, Void, Void> {
-        private ExerciseDao asyncTaskDao;
-        deleteAllAsyncTask(ExerciseDao dao){ asyncTaskDao=dao; }
-        @Override
-        protected Void doInBackground(Void... voids){
-            asyncTaskDao.deleteAllSets();
             return null;
         }
     }

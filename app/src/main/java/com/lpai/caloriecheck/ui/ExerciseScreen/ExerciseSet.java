@@ -3,10 +3,7 @@ package com.lpai.caloriecheck.ui.ExerciseScreen;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.text.DateFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 
 @Entity(tableName = "sets")
 public class ExerciseSet {
