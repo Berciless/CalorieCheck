@@ -1,37 +1,39 @@
 package com.lpai.caloriecheck.ui.dashboard;
 
-        import android.content.Context;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.AdapterView;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
-        import com.lpai.caloriecheck.R;
+import com.lpai.caloriecheck.R;
 
-        import java.util.List;
+import java.util.List;
 
 public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodViewHolder> {
     private final LayoutInflater inflater;
     private List<Food> foods; // Cached copy of foods
-    Context context;
-    FoodListAdapter(Context context) {
+    private DeleteFoodListener deleteListener;
+
+    FoodListAdapter(Context context,DeleteFoodListener deleteListener) {
+        this.deleteListener=deleteListener;
         inflater = LayoutInflater.from(context);
-        this.context=context;
     }
-    public View.OnClickListener clickListener;
 
     @Override
-    public FoodViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = inflater.inflate(R.layout.food_item, parent, false);
-        return new FoodViewHolder(itemView);
+        return new FoodViewHolder(itemView,deleteListener);
     }
 
     @Override
-    public void onBindViewHolder(FoodViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
         if (foods != null) {
             Food foodItem = foods.get(position);
             holder.txtName.setText(foodItem.name);
@@ -39,10 +41,9 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
             holder.txtProteins.setText(String.valueOf(foodItem.proteins));
             holder.txtCarbs.setText(String.valueOf(foodItem.carbs));
             holder.txtFat.setText(String.valueOf(foodItem.fat));
-//AICI O SA SETEZI NAVIGAREA CATRE UPDATE SAU DELET PT UN ANUME FOOD DIN DYLY_FOOD
             holder.itemView.setOnClickListener(v -> System.out.println(foodItem.foodId));
         } else {
-            holder.txtName.setText("ERROR");
+            holder.txtName.setText(String.valueOf("ERROR"));
             holder.txtCalories.setText(String.valueOf("ERROR"));
             holder.txtProteins.setText(String.valueOf("ERROR"));
             holder.txtCarbs.setText(String.valueOf("ERROR"));
@@ -50,17 +51,21 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
         }
     }
 
+    public interface DeleteFoodListener{
+        void onDeletePressed(long id);
+    }
+
     void setFoods(List<Food> foodsToSet){
         foods = foodsToSet;
         notifyDataSetChanged();
+
     }
 
-    // getItemCount() is called many times, and when it is first called,
-    // mFoods has not been updated (means initially, it's null, and we can't return null).
     @Override
     public int getItemCount() {
-        if (foods != null)
+        if (foods != null) {
             return foods.size();
+        }
         else return 0;
     }
 
@@ -70,10 +75,17 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
         TextView txtProteins;
         TextView txtCarbs;
         TextView txtFat;
+        ImageButton deleteFoodBtn;
+        DeleteFoodListener deleteFoodListener;
 
 
-        private FoodViewHolder(View itemView) {
+        private FoodViewHolder(View itemView,DeleteFoodListener deleteFoodListener) {
             super(itemView);
+            this.deleteFoodListener=deleteFoodListener;
+            deleteFoodBtn = itemView.findViewById(R.id.delete_food_btn);
+            deleteFoodBtn.setOnClickListener(
+                    v->deleteListener.onDeletePressed(foods.get(getAdapterPosition()).foodId)
+            );
             txtName= itemView.findViewById(R.id.name);
             txtCalories= itemView.findViewById(R.id.calories);
             txtProteins= itemView.findViewById(R.id.proteins);

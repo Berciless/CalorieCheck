@@ -2,10 +2,10 @@ package com.lpai.caloriecheck.ui.dashboard;
 
 public class MacroRatio {
     public String name;
-    public double proteinRatio;
-    public double carbsRatio;
-    public double fatRatio;
-    public double caloriesRatio;
+    double proteinRatio;
+    double carbsRatio;
+    double fatRatio;
+    double caloriesRatio;
 
     public MacroRatio(String name, double proteinRatio ,double carbsRatio, double fatRatio){
         this.name = name;

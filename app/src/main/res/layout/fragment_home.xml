@@ -1,22 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.home.HomeFragment"
+    android:padding="20dp">
 
-    <TextView
-        android:id="@+id/text_home"
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_marginTop="20dp">
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/text_calori"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calories: " />
+<!--        <TextView-->
+<!--            android:textSize="20sp"-->
+<!--            android:id="@+id/calories_progre_value"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="200" />-->
+<!--        <TextView-->
+<!--            android:textSize="20sp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="/" />-->
+<!--        <TextView-->
+<!--            android:textSize="20sp"-->
+<!--            android:id="@+id/calories_target_value"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="2000" />-->
+    </LinearLayout>
+    <ProgressBar
+        android:id="@+id/progress_Bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progressTint="#229302"
+        android:layout_margin="10dp"
+        />
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/text_protein"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Protein: " />
+<!--        <TextView-->
+<!--            android:textSize="20sp"-->
+<!--            android:id="@+id/protein_progre_value"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="200" />-->
+<!--        <TextView-->
+<!--            android:textSize="20sp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="/" />-->
+<!--        <TextView-->
+<!--            android:textSize="20sp"-->
+<!--            android:id="@+id/protein_target_value"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="2000" />-->
+    </LinearLayout>
+
+
+    <ProgressBar
+        android:id="@+id/progressBar_protein"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progressTint="#229302"
+        android:layout_margin="10dp"
+        />
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/text_carbs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Carbohidrates: " />
+<!--        <TextView-->
+<!--            android:textSize="20sp"-->
+<!--            android:id="@+id/carbs_progre_value"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="200" />-->
+<!--        <TextView-->
+<!--            android:textSize="20sp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="/" />-->
+<!--        <TextView-->
+<!--            android:textSize="20sp"-->
+<!--            android:id="@+id/carbs_target_value"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="2000" />-->
+    </LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBar_carbs"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progressTint="#229302"
+        android:layout_margin="10dp"
+        />
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/text_fats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fat: " />
+<!--        <TextView-->
+<!--            android:textSize="20sp"-->
+<!--            android:id="@+id/fat_progre_value"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="200" />-->
+<!--        <TextView-->
+<!--            android:textSize="20sp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="/" />-->
+<!--        <TextView-->
+<!--            android:textSize="20sp"-->
+<!--            android:id="@+id/fat_target_value"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="2000" />-->
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar_fats"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progressTint="#229302"
+        android:layout_margin="10dp"
+        />
+
+
+
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:id="@+id/set_target_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Targets"
+        />
+
+</LinearLayout>

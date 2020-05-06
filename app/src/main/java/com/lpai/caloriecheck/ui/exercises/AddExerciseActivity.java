@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,18 +21,19 @@ public class AddExerciseActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_exercise);
         newExercise =findViewById(R.id.newExerciseName);
-
-        final Button button =findViewById(R.id.confirmNewEserciseBtn);
+        Button button =findViewById(R.id.confirmNewEserciseBtn);
         button.setOnClickListener(view -> {
-            Intent replyIntent = new Intent();
             if(TextUtils.isEmpty(newExercise.getText())){
-                setResult(RESULT_CANCELED,replyIntent);
+                Toast.makeText(getApplicationContext(),"You must set a name for the exercise",Toast.LENGTH_LONG).show();
             } else{
+
+                Intent replyIntent = new Intent();
                 String name = newExercise.getText().toString();
                 replyIntent.putExtra(EXTRA_REPLY,name);
                 setResult(RESULT_OK, replyIntent);
+                finish();
+
             }
-            finish();
         });
 
     }

@@ -15,7 +15,6 @@ public class Food {
     public double fat;
     public double calories;
 
-    @Ignore
     public Food( String name, double proteins, double carbs, double fat, double calories) {
         this.name = name;
         this.proteins = proteins;
@@ -24,13 +23,6 @@ public class Food {
         this.calories = calories;
     }
 
-    public Food( String name) {
-        this.name = name;
-        this.proteins = 20;
-        this.carbs = 100;
-        this.fat = 10;
-        this.calories = 570;
-    }
     @Ignore
     public Food(MacroRatio macroRatio, double quantity) {
         this.name = macroRatio.name;
@@ -39,7 +31,6 @@ public class Food {
         this.fat      = macroRatio.fatRatio*quantity;
         this.calories = macroRatio.caloriesRatio*quantity;
     }
-
 
 
 }
